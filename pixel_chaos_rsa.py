@@ -55,38 +55,6 @@ def invert_permutation(perm: np.ndarray) -> np.ndarray:
     inv[perm] = np.arange(len(perm), dtype=np.int64)
     return inv
 
-# # ---------- pixel scramble/descramble ----------
-# def scramble_pixels(arr: np.ndarray, seed_int: int) -> np.ndarray:
-#     """arr: (H,W,C) uint8  -> 返回同 shape 的 scrambled arr"""
-#     h, w = arr.shape[:2]
-#     if arr.ndim == 2:
-#         c = 1
-#         flat = arr.reshape(-1, 1)
-#     else:
-#         c = arr.shape[2]
-#         flat = arr.reshape(-1, c)
-#     n = flat.shape[0]
-#     perm = make_permutation(n, seed_int)
-#     scrambled_flat = flat[perm]
-#     scrambled = scrambled_flat.reshape((h, w, c)) if c > 1 else scrambled_flat.reshape((h, w))
-#     return scrambled
-#
-# def descramble_pixels(arr: np.ndarray, seed_int: int) -> np.ndarray:
-#     h, w = arr.shape[:2]
-#     if arr.ndim == 2:
-#         c = 1
-#         flat = arr.reshape(-1, 1)
-#     else:
-#         c = arr.shape[2]
-#         flat = arr.reshape(-1, c)
-#     n = flat.shape[0]
-#     perm = make_permutation(n, seed_int)
-#     inv = invert_permutation(perm)
-#     restored_flat = np.empty_like(flat)
-#     restored_flat[inv] = flat
-#     restored = restored_flat.reshape((h, w, c)) if c > 1 else restored_flat.reshape((h, w))
-#     return restored
-
 def scramble_pixels(arr, seed_int):
     h, w = arr.shape[:2]
     c = 1 if arr.ndim == 2 else arr.shape[2]
